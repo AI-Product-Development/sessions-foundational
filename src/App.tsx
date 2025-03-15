@@ -1,16 +1,19 @@
 import React from 'react';
-import { Layout } from './components/Layout';
+import { SportProvider } from './context/SportContext';
+import { FilterProvider } from './context/FilterContext';
 import { TopBar } from './components/TopBar';
 import { SideNav } from './components/SideNav';
 import { ScoreBoard } from './components/ScoreBoard';
-import { SportProvider } from './context/SportContext';
-import { FilterProvider } from './context/FilterContext';
+import { useTheme } from './hooks/useTheme';
 
 function App() {
+  // Initialize theme (this runs the effect in useTheme)
+  useTheme();
+
   return (
     <SportProvider>
       <FilterProvider>
-        <div className="min-h-screen bg-[#1d1e1f] text-white">
+        <div className="min-h-screen bg-background">
           <TopBar />
           <div className="flex">
             <SideNav />

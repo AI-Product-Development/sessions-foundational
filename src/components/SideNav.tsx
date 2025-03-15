@@ -52,14 +52,14 @@ export function SideNav() {
   };
 
   return (
-    <nav className="w-64 bg-[#2c2d2e] border-r border-[#3a3b3c] h-[calc(100vh-6.5rem)]">
+    <nav className="w-64 bg-card border-r border-border h-[calc(100vh-6.5rem)] hidden lg:block">
       <div className="p-4">
         <div className="relative">
-          <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
+          <Search className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
           <input
             type="text"
             placeholder="Search"
-            className="w-full bg-[#1d1e1f] text-white pl-10 pr-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-[#3a3b3c]"
+            className="w-full bg-background text-foreground pl-10 pr-4 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-border"
           />
         </div>
       </div>
@@ -67,7 +67,7 @@ export function SideNav() {
       {activeFilter && (
         <button
           onClick={handleBackClick}
-          className="flex items-center space-x-2 px-4 py-2 text-gray-300 hover:bg-[#3a3b3c] w-full"
+          className="flex items-center space-x-2 px-4 py-2 text-foreground hover:bg-secondary w-full"
         >
           <ChevronLeft className="h-5 w-5" />
           <span>Back to {activeSport.name}</span>
@@ -77,13 +77,13 @@ export function SideNav() {
       {!activeFilter && (
         <>
           <div className="px-4">
-            <h2 className="text-gray-400 text-sm font-medium mb-2">REGION</h2>
+            <h2 className="text-muted-foreground text-sm font-medium mb-2">REGION</h2>
             <div className="space-y-1">
               {regions.map((region) => (
                 <button
                   key={region.id}
                   onClick={() => handleRegionClick(region)}
-                  className="flex items-center space-x-3 px-3 py-2 text-gray-300 hover:bg-[#3a3b3c] rounded-md w-full text-left"
+                  className="flex items-center space-x-3 px-3 py-2 text-foreground hover:bg-secondary rounded-md w-full text-left"
                 >
                   <span>{region.flag}</span>
                   <span>{region.name}</span>
@@ -93,18 +93,18 @@ export function SideNav() {
           </div>
 
           <div className="px-4 mt-6">
-            <h2 className="text-gray-400 text-sm font-medium mb-2">TEAMS</h2>
+            <h2 className="text-muted-foreground text-sm font-medium mb-2">TEAMS</h2>
             <div className="space-y-1">
               {teams.map((team) => (
                 <button
                   key={team.id}
                   onClick={() => handleTeamClick(team)}
-                  className="flex items-center space-x-3 px-3 py-2 text-gray-300 hover:bg-[#3a3b3c] rounded-md w-full text-left"
+                  className="flex items-center space-x-3 px-3 py-2 text-foreground hover:bg-secondary rounded-md w-full text-left"
                 >
                   <span>{team.logo}</span>
                   <div className="flex flex-col">
                     <span>{team.name}</span>
-                    <span className="text-xs text-gray-400">{team.country}</span>
+                    <span className="text-xs text-muted-foreground">{team.country}</span>
                   </div>
                 </button>
               ))}
@@ -112,18 +112,18 @@ export function SideNav() {
           </div>
 
           <div className="px-4 mt-6">
-            <h2 className="text-gray-400 text-sm font-medium mb-2">COMPETITIONS</h2>
+            <h2 className="text-muted-foreground text-sm font-medium mb-2">COMPETITIONS</h2>
             <div className="space-y-1">
               {competitions.map((competition) => (
                 <button
                   key={competition.id}
                   onClick={() => handleCompetitionClick(competition)}
-                  className="flex items-center space-x-3 px-3 py-2 text-gray-300 hover:bg-[#3a3b3c] rounded-md w-full text-left"
+                  className="flex items-center space-x-3 px-3 py-2 text-foreground hover:bg-secondary rounded-md w-full text-left"
                 >
                   <span>{competition.logo}</span>
                   <div className="flex flex-col">
                     <span>{competition.name}</span>
-                    <span className="text-xs text-gray-400">{competition.country}</span>
+                    <span className="text-xs text-muted-foreground">{competition.country}</span>
                   </div>
                 </button>
               ))}

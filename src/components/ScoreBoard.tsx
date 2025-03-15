@@ -107,18 +107,18 @@ export function ScoreBoard() {
     <div className="p-4">
       {activeFilter && (
         <div className="mb-4 px-2">
-          <h1 className="text-xl font-semibold">{activeFilter.name}</h1>
+          <h1 className="text-xl font-semibold text-foreground">{activeFilter.name}</h1>
         </div>
       )}
 
-      <div className="flex items-center space-x-4 mb-6">
-        <span className="bg-white text-black px-2 py-1 text-sm rounded">LIVE</span>
+      <div className="flex items-center space-x-4 mb-6 overflow-x-auto">
+        <span className="bg-primary text-primary-foreground px-2 py-1 text-sm rounded">LIVE</span>
         {dates.map((date) => (
           <button
             key={date.fullDate}
             onClick={() => handleDateClick(date)}
             className={`flex flex-col items-center ${
-              date.fullDate === selectedDate.fullDate ? 'text-[#ff6b00]' : 'text-gray-400'
+              date.fullDate === selectedDate.fullDate ? 'text-primary' : 'text-muted-foreground'
             }`}
           >
             <span className="text-sm">{date.day}</span>
@@ -129,14 +129,14 @@ export function ScoreBoard() {
 
       <div className="space-y-6">
         {Object.values(matchesByLeague).map(({ league, matches }) => (
-          <div key={league.id} className="bg-[#2c2d2e] rounded-lg overflow-hidden">
-            <div className="flex items-center justify-between p-4 border-b border-[#3a3b3c]">
+          <div key={league.id} className="bg-card rounded-lg overflow-hidden shadow">
+            <div className="flex items-center justify-between p-4 border-b border-border">
               <div className="flex items-center space-x-2">
                 <span>{league.logo}</span>
-                <span className="text-lg font-medium">{league.name}</span>
-                <span className="text-sm text-gray-400">{league.country}</span>
+                <span className="text-lg font-medium text-foreground">{league.name}</span>
+                <span className="text-sm text-muted-foreground">{league.country}</span>
               </div>
-              <button className={`${league.isFavorite ? 'text-[#ff6b00]' : 'text-gray-400'} hover:text-[#ff6b00]`}>
+              <button className={`${league.isFavorite ? 'text-primary' : 'text-muted-foreground'} hover:text-primary`}>
                 <Star className="h-5 w-5" />
               </button>
             </div>
@@ -144,32 +144,32 @@ export function ScoreBoard() {
             {matches.map((match) => (
               <div
                 key={match.id}
-                className="flex items-center justify-between p-4 hover:bg-[#3a3b3c]"
+                className="flex items-center justify-between p-4 hover:bg-secondary/50 transition-colors"
               >
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-2">
                     <div className="flex items-center space-x-2">
                       <span>{match.homeTeam.logo}</span>
-                      <span>{match.homeTeam.name}</span>
+                      <span className="text-foreground">{match.homeTeam.name}</span>
                     </div>
                     {activeSport.id === '4' ? (
                       <TennisScoreDisplay score={match.score} />
                     ) : (
-                      <span className="font-bold">{match.score.home}</span>
+                      <span className="font-bold text-foreground">{match.score.home}</span>
                     )}
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-2">
                       <span>{match.awayTeam.logo}</span>
-                      <span>{match.awayTeam.name}</span>
+                      <span className="text-foreground">{match.awayTeam.name}</span>
                     </div>
                     {activeSport.id !== '4' && (
-                      <span className="font-bold">{match.score.away}</span>
+                      <span className="font-bold text-foreground">{match.score.away}</span>
                     )}
                   </div>
                 </div>
                 <div className="ml-4">
-                  <span className="text-sm text-gray-400">
+                  <span className="text-sm text-muted-foreground">
                     {match.status === 'SCHEDULED' ? match.time?.period : match.time?.period}
                     {match.status === 'LIVE' && match.time?.period !== 'Break' && ` ${match.time?.current}'`}
                   </span>
